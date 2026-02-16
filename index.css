@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary-bg: rgba(23, 33, 43, 1);
+  --color-secondary-bg: rgba(145, 158, 171, 0.12);
+  --color-primary-text: rgba(255, 255, 255, 1);
+  --color-secondary-text: rgba(255, 255, 255, 1);
+  --color-button-accent: rgba(233, 72, 23, 1);
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: normal;
+  font-style: normal;
+}
