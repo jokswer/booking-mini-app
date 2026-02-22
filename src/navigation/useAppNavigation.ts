@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router";
 
-import { CREATE_GAME, HOME, PROFILE } from "./routes";
+import { CREATE_GAME, HOME, PROFILE, SLOT } from "./routes";
 
 export const useAppNavigation = () => {
   const navigate = useNavigate();
@@ -9,6 +9,7 @@ export const useAppNavigation = () => {
   const goToProfile = () => navigate(PROFILE);
   const goToHome = () => navigate(HOME);
   const goToCreateGame = () => navigate(CREATE_GAME);
+  const goToSlot = () => navigate(SLOT);
 
-  return { goBack, goToProfile, goToHome, goToCreateGame };
+  return { goBack, goToProfile, goToHome, goToCreateGame, goToSlot };
 };
