@@ -14,3 +14,25 @@ body {
   font-weight: normal;
   font-style: normal;
 }
+
+/* Collapse.css */
+
+.collapse-content {
+  overflow: hidden;
+  transition: height 0.3s ease-in-out; /* Smooth animation for height changes */
+}
+
+.collapse-content.collapsed {
+  height: 0; /* Hidden state */
+}
+
+.collapse-content.expanded {
+  /* Set a fixed height or use max-height for dynamic content */
+  height: auto; 
+  /* For smooth animation with dynamic height, consider using a library like react-collapsed */
+}
+
+.content-inner {
+  padding: 10px;
+  /* Add padding to an inner div to prevent issues with height calculation during animation */
+}
