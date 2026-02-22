@@ -31,8 +31,3 @@ body {
   height: auto; 
   /* For smooth animation with dynamic height, consider using a library like react-collapsed */
 }
-
-.content-inner {
-  padding: 10px;
-  /* Add padding to an inner div to prevent issues with height calculation during animation */
-}
