@@ -1,7 +1,5 @@
-import { Button, Layout } from "components";
+import { Avatar, Layout, GameSlotLine } from "components";
 import React from "react";
-import arrowDown from "assets/arrowDown.svg";
-import arrowUp from "assets/arrowUp.svg";
 
 interface ISlot {
     user_id: string;
@@ -77,16 +75,7 @@ const data: ISlot[] = [
     }
 ]
 
-const GameCollapsis: React.FC<ISlotGame> = (game: ISlotGame) => {
-    const [isExpanded, setIsExpanded] = React.useState(false);
-
-    const onConnectToGame = (game: ISlotGame) => {
-
-    }
-
-    const toggleCollapse = () => {
-        setIsExpanded(!isExpanded);
-    };
+export const Slot: React.FC = () => {
 
     const colorForLevel = (level: number) => {
         switch (level) {
@@ -114,96 +103,6 @@ const GameCollapsis: React.FC<ISlotGame> = (game: ISlotGame) => {
         }
     }
 
-    return (
-        <div
-            style={{
-                paddingTop: 10,
-                paddingBottom: 10,
-                paddingLeft: 16,
-                paddingRight: 16,
-                backgroundColor: "rgba(145, 158, 171, 0.08)",
-                borderRadius: 12,
-                display: 'flex',
-                flexDirection: 'column'
-            }}
-        >
-            {/* The button or div that triggers the collapse on click */}
-            <button
-                onClick={toggleCollapse}
-                // className="toggle-button"
-                aria-expanded={isExpanded}
-                style={{
-                    display: 'flex',
-                    flexDirection: 'row',
-                    justifyContent: 'space-between',
-                    flex: 1
-                }}
-            >
-                <div
-                    style={{
-                        display: 'flex',
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        flex: 1,
-                        gap: 4,
-                    }}
-                >
-                    {game.type_title}
-                    {!isExpanded ?
-                        <div
-                            style={{
-                                height: 6,
-                                width: 6,
-                                borderRadius: 6,
-                                backgroundColor: colorForLevel(game.level)
-                            }}
-                        />
-                        :
-                        <div />
-                    }
-                </div>
-                <img
-                    src={isExpanded ? arrowUp : arrowDown}
-                    height={3.33 * 2}
-                    width={6.66 * 2}
-                />
-            </button>
-            <div
-                className={`collapse-content ${isExpanded ? 'expanded' : 'collapsed'}`}
-                style={{
-                    gap: 12,
-                }}
-            >
-                <h3
-                    style={{
-                        color: colorForLevel(game.level),
-                        marginTop: 12
-                    }}
-                >
-                    {titleForLevel(game.level)}
-                </h3>
-                <div >
-                    {game.describtion}
-                </div>
-                <div
-                    style={{
-                        display: 'flex',
-                        flex: 1,
-                        marginTop: 16,
-                        marginBottom: 16
-                    }}
-                >
-                    <Button
-                        title="Подключиться"
-                        onClick={() => onConnectToGame(game)}
-                    />
-                </div>
-            </div>
-        </div>
-    )
-}
-
-export const Slot: React.FC = () => {
     return (
         <Layout>
             <div className="mt-6">
@@ -237,17 +136,7 @@ export const Slot: React.FC = () => {
                                             gap: 14
                                         }}
                                     >
-                                        <img
-                                            src={autor.avatar}
-                                            width={48}
-                                            height={48}
-                                            style={{
-                                                borderRadius: 24,
-                                                height: 48,
-                                                objectFit: 'contain'
-                                            }}
-
-                                        />
+                                        <Avatar url={autor.avatar} />
                                         <div
                                             style={{
                                                 display: 'flex',
@@ -270,7 +159,14 @@ export const Slot: React.FC = () => {
                                     >
                                         {autor.games.map((gameSlot) => {
                                             return (
-                                                <GameCollapsis {...gameSlot} />
+                                                <GameSlotLine
+                                                    title={gameSlot.type_title}
+                                                    describtion={gameSlot.describtion}
+                                                    onAction={() => { }}
+                                                    colorLevel={colorForLevel(gameSlot.level)}
+                                                    titleLevel={titleForLevel(gameSlot.level)}
+                                                    actionTitle={"Принять вызов"}
+                                                />
                                             )
                                         })}
                                     </section>
