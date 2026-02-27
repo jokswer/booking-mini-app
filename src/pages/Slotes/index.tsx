@@ -1,4 +1,4 @@
-import { Layout } from "components";
+import { Button, Layout } from "components";
 import React from "react";
 import arrowDown from "assets/arrowDown.svg";
 import arrowUp from "assets/arrowUp.svg";
@@ -143,6 +143,7 @@ const GameCollapsis: React.FC<ISlotGame> = (game: ISlotGame) => {
                     style={{
                         display: 'flex',
                         flexDirection: 'row',
+                        alignItems: 'center',
                         flex: 1,
                         gap: 4,
                     }}
@@ -192,18 +193,10 @@ const GameCollapsis: React.FC<ISlotGame> = (game: ISlotGame) => {
                         marginBottom: 16
                     }}
                 >
-                    <button
+                    <Button
+                        title="Подключиться"
                         onClick={() => onConnectToGame(game)}
-                        style={{
-                            flex: 1,
-                            backgroundColor: '#E94817',
-                            height: 48,
-                            padding: 7,
-                            borderRadius: 8
-                        }}
-                    >
-                        Подключиться
-                    </button>
+                    />
                 </div>
             </div>
         </div>
