@@ -31,9 +31,7 @@ export const GameSlotLine: React.FC<Props> = ({
     };
 
     return (
-        <button
-            onClick={toggleCollapse}
-            aria-expanded={isExpanded}
+        <div
             style={{
                 paddingTop: 16,
                 paddingBottom: 16,
@@ -46,7 +44,9 @@ export const GameSlotLine: React.FC<Props> = ({
                 borderTopColor: "rgba(145, 158, 171, 0.16)",
             }}
         >
-            <div
+            <button
+                onClick={toggleCollapse}
+                aria-expanded={isExpanded}
                 style={{
                     display: 'flex',
                     flexDirection: 'row',
@@ -91,7 +91,7 @@ export const GameSlotLine: React.FC<Props> = ({
                     height={3.33 * 2}
                     width={6.66 * 2}
                 />
-            </div>
+            </button>
             <div
                 className={`collapse-content ${isExpanded ? 'expanded' : 'collapsed'}`}
                 style={{
@@ -137,6 +137,6 @@ export const GameSlotLine: React.FC<Props> = ({
                     />
                 </div>
             </div>
-        </button>
+        </div>
     )
 }
