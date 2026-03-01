@@ -33,7 +33,7 @@ const data: ISlot[] = [
                 level: 1,
                 max_gamers: 2,
                 current_gamers: 1,
-                describtion: "Великий пожиратель хочет кушать, скидываемся на поёк"
+                describtion: "Великий пожиратель хочет кушать, скидываемся на поёк\n asd asd asd as \n das d a"
             },
             {
                 id: "1333",
@@ -166,6 +166,7 @@ export const Slot: React.FC = () => {
                                                     colorLevel={colorForLevel(gameSlot.level)}
                                                     titleLevel={titleForLevel(gameSlot.level)}
                                                     actionTitle={"Принять вызов"}
+                                                    isAutor={false}
                                                 />
                                             )
                                         })}

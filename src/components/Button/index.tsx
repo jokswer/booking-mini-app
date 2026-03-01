@@ -5,12 +5,14 @@ type Props = {
     onClick?: () => void;
     title?: string;
     enabled?: boolean;
+    grey?: boolean;
 };
 
 export const Button: React.FC<Props> = ({
     onClick,
     title,
     enabled = true,
+    grey = false,
 }) => {
     return (
         <button
@@ -18,7 +20,7 @@ export const Button: React.FC<Props> = ({
             disabled={!enabled}
             style={{
                 flex: 1,
-                backgroundColor: enabled ? '#E94817' : 'rgba(145, 158, 171, 0.12)',
+                backgroundColor: grey ? 'rgba(145, 158, 171, 0.12)' : '#E94817',
                 height: 48,
                 paddingRight: 16,
                 paddingLeft: 16,

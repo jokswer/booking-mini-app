@@ -11,6 +11,7 @@ type Props = {
     actionTitle: string;
     colorLevel: string;
     titleLevel: string;
+    isAutor: boolean;
 }
 
 export const GameSlotLine: React.FC<Props> = ({
@@ -20,6 +21,7 @@ export const GameSlotLine: React.FC<Props> = ({
     colorLevel,
     titleLevel,
     actionTitle,
+    isAutor,
     enableAction = true
 }) => {
     const [isExpanded, setIsExpanded] = React.useState(false);
@@ -29,21 +31,22 @@ export const GameSlotLine: React.FC<Props> = ({
     };
 
     return (
-        <div
+        <button
+            onClick={toggleCollapse}
+            aria-expanded={isExpanded}
             style={{
-                paddingTop: 10,
-                paddingBottom: 10,
+                paddingTop: 16,
+                paddingBottom: 16,
                 paddingLeft: 16,
                 paddingRight: 16,
-                backgroundColor: "rgba(145, 158, 171, 0.08)",
-                borderRadius: 12,
+                backgroundColor: isExpanded ? "rgba(145, 158, 171, 0.08)" : undefined,
                 display: 'flex',
-                flexDirection: 'column'
+                flexDirection: 'column',
+                borderTopWidth: 1,
+                borderTopColor: "rgba(145, 158, 171, 0.16)",
             }}
         >
-            <button
-                onClick={toggleCollapse}
-                aria-expanded={isExpanded}
+            <div
                 style={{
                     display: 'flex',
                     flexDirection: 'row',
@@ -60,7 +63,16 @@ export const GameSlotLine: React.FC<Props> = ({
                         gap: 4,
                     }}
                 >
-                    {title}
+                    <span
+                        style={{
+                            color: '#FFFFFF',
+                            fontSize: 16,
+                            fontWeight: 'bold',
+                            verticalAlign: 'middle'
+                        }}
+                    >
+                        {title}
+                    </span>
                     {!isExpanded ?
                         <div
                             style={{
@@ -79,7 +91,7 @@ export const GameSlotLine: React.FC<Props> = ({
                     height={3.33 * 2}
                     width={6.66 * 2}
                 />
-            </button>
+            </div>
             <div
                 className={`collapse-content ${isExpanded ? 'expanded' : 'collapsed'}`}
                 style={{
@@ -89,29 +101,42 @@ export const GameSlotLine: React.FC<Props> = ({
                 <h3
                     style={{
                         color: colorLevel,
-                        marginTop: 12
+                        marginTop: 2,
+                        marginBottom: 12,
+                        textAlign: 'left',
+                        fontSize: 12,
+                        fontWeight: 'bold',
                     }}
                 >
                     {titleLevel}
                 </h3>
-                <div >
+                <p
+                    style={{
+                        whiteSpace: 'pre-line',
+                        wordBreak: 'break-word',
+                        textAlign: 'left',
+                        fontSize: 14,
+                        color: '#919EAB',
+                        fontWeight: '500',
+                    }}
+                >
                     {describtion}
-                </div>
+                </p>
                 <div
                     style={{
                         display: 'flex',
                         flex: 1,
-                        marginTop: 16,
-                        marginBottom: 16
+                        marginTop: 16
                     }}
                 >
                     <Button
                         title={actionTitle}
                         onClick={onAction}
                         enabled={enableAction}
+                        grey={isAutor}
                     />
                 </div>
             </div>
-        </div>
+        </button>
     )
 }
