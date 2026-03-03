@@ -1,2 +1,4 @@
 export * from "./Header";
-export * from "./GamesList";
+export * from "./TimeSlotsList";
+export * from "./Tabs";
+export * from "./TimeSlotsCard";

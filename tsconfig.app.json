@@ -12,6 +12,10 @@
     "paths": {
       "components": ["src/components"],
       "components/*": ["src/components/*"],
+      "constants": ["src/constants"],
+      "constants/*": ["src/constants/*"],
+      "types": ["src/types"],
+      "types/*": ["src/types/*"],
       "pages": ["src/pages"],
       "pages/*": ["src/pages/*"],
       "assets": ["src/assets"],
