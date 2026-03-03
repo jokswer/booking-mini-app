@@ -1,14 +1,14 @@
 import { Layout, AddButton } from "components";
 import { useAppNavigation } from "navigation";
 
-import { GamesList, Header } from "./components";
+import { TimeSlotsList, Header } from "./components";
 
 export const HomePage = () => {
   const { goToCreateGame } = useAppNavigation();
   return (
     <Layout>
       <Header />
-      <GamesList />
+      <TimeSlotsList />
       <AddButton
         className="fixed bottom-5 right-5 z-50"
         onClick={goToCreateGame}
