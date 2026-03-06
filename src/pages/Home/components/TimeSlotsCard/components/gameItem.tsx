@@ -17,7 +17,9 @@ const GameItemComponent: React.FC<GameItemProps> = ({
   systems,
 }) => {
   return (
-    <div className={twMerge("flex w-full pr-4 items-center", !isMyGame && "pl-4")}>
+    <div
+      className={twMerge("flex w-full pr-4 items-center", !isMyGame && "pl-4")}
+    >
       {isMyGame && <div className="w-1 h-7 mr-3 rounded-r-sm bg-accent-bg" />}
       <img className="rounded-full size-7 mr-3" src={userAvatar} />
       <div className="font-medium text-base/6 text-line mr-2">{userName}</div>

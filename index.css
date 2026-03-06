@@ -34,6 +34,6 @@ body {
 
 .collapse-content.expanded {
   /* Set a fixed height or use max-height for dynamic content */
-  height: auto; 
+  height: auto;
   /* For smooth animation with dynamic height, consider using a library like react-collapsed */
 }
