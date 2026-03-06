@@ -1,9 +1,10 @@
 import { useEffect } from "react";
-import { Routes, Route } from "react-router";
+import { Route, Routes } from "react-router";
+
 import WebApp from "@twa-dev/sdk";
 
 import { CREATE_GAME, HOME, PROFILE, SLOT } from "navigation";
-import { HomePage, ProfilePage, CreateGamePage, Slot } from "pages";
+import { CreateGamePage, HomePage, ProfilePage, Slot } from "pages";
 
 const App = () => {
   useEffect(() => {

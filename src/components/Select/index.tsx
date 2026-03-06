@@ -1,6 +1,7 @@
 import React, { memo, useMemo } from "react";
 import BaseSelect, { type StylesConfig } from "react-select";
-import { twMerge, type ClassNameValue } from "tailwind-merge";
+
+import { type ClassNameValue, twMerge } from "tailwind-merge";
 
 type Option = { value: string; label: string };
 type Props = {

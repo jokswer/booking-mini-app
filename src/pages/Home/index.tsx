@@ -1,7 +1,7 @@
-import { Layout, AddButton } from "components";
+import { AddButton, Layout } from "components";
 import { useAppNavigation } from "navigation";
 
-import { TimeSlotsList, Header } from "./components";
+import { Header, TimeSlotsList } from "./components";
 
 export const HomePage = () => {
   const { goToCreateGame } = useAppNavigation();

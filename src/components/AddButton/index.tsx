@@ -1,5 +1,6 @@
 import React from "react";
-import { twMerge, type ClassNameValue } from "tailwind-merge";
+
+import { type ClassNameValue, twMerge } from "tailwind-merge";
 
 import plusIcon from "assets/plus.svg";
 

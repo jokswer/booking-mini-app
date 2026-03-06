@@ -1,5 +1,6 @@
-import { Avatar, Layout, GameSlotLine } from "components";
 import React from "react";
+
+import { Avatar, GameSlotLine, Layout } from "components";
 
 interface ISlot {
   user_id: string;

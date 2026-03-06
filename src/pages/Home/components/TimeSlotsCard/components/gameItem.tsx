@@ -1,7 +1,8 @@
 import React, { memo } from "react";
+
 import { twMerge } from "tailwind-merge";
 
-import type { PlayerEntry, GameSystem } from "types";
+import type { GameSystem, PlayerEntry } from "types";
 
 type GameItemProps = {
   isMyGame: boolean;

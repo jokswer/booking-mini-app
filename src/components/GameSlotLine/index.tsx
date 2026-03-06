@@ -1,7 +1,9 @@
-import { Button } from "components";
 import * as React from "react";
+
 import arrowDown from "assets/arrowDown.svg";
 import arrowUp from "assets/arrowUp.svg";
+
+import { Button } from "components";
 
 type Props = {
   title: string;

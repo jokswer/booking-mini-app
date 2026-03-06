@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { useAppNavigation } from "navigation";
 
-import { Tabs, type TabValue, type Tab } from "../Tabs";
+import { type Tab, type TabValue, Tabs } from "../Tabs";
 import { TimeSlotsCard } from "../TimeSlotsCard";
 import { MOCK_GAMES } from "./mock";
 
