@@ -5,3 +5,5 @@ export * from "./Button";
 export * from "./Chip";
 export * from "./Avatar";
 export * from "./GameSlotLine";
+export * from "./GameSystemsSellector";
+export * from "./Modal";
