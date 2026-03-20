@@ -1,7 +1,7 @@
 import React from 'react'
 import { BackButton } from "@twa-dev/sdk/react";
 
-import { GameSystemsSellercot, Layout, Modal } from "components";
+import { GameSystemsSellercot, Layout, Modal, AddedTimeSlote } from "components";
 import { useAppNavigation } from "navigation";
 
 export const CreateGamePage = () => {
@@ -24,7 +24,7 @@ export const CreateGamePage = () => {
         }}
         isOpen={showModal}
       >
-        <GameSystemsSellercot
+        {/* <GameSystemsSellercot
           types={[{
             typesId: "1",
             shortName: "wh 40k",
@@ -43,6 +43,29 @@ export const CreateGamePage = () => {
           selected={[]}
           onClose={() => setShowModal(false)}
           onSelect={(types) => setShowModal(false)}
+        /> */}
+        <AddedTimeSlote
+          date={'10 февраля'}
+          dayWeek={'Чт'}
+          timeSlotes={[
+            {
+              id: "0",
+              title: 'Утро'
+            }, {
+              id: "1",
+              title: 'День'
+            }, {
+              id: "2",
+              title: 'Вечер'
+            },
+          ]}
+          selected={["1", "2"]}
+          onSelect={() => {
+
+          }}
+          onDelete={() => {
+
+          }}
         />
       </Modal>
     </Layout>

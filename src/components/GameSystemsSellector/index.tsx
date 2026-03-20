@@ -1,7 +1,6 @@
 import * as React from 'react';
 
-import checkboxActive from 'assets/checkboxActive.svg'
-import checkboxInactive from 'assets/checkboxInactive.svg'
+import { Checkbox } from 'components';
 
 type IGameSystemsType = {
     typesId: string;
@@ -82,34 +81,11 @@ export const GameSystemsSellercot: React.FC<Props> = ({
             >
                 {types.map((type) => {
                     const isSelected = selectedTypes[type.typesId]
-                    return (
-                        <div
-                            key={type.typesId}
-                            style={{
-                                display: 'flex',
-                                flexDirection: 'row',
-                                alignItems: "center",
-                            }}
-                        >
-                            <button
-                                style={{
-                                    padding: 8
-                                }}
-                                onClick={() => switchSelect(type)}
-                            >
-                                <img src={isSelected ? checkboxActive : checkboxInactive} />
-                            </button>
-                            <p
-                                style={{
-                                    fontSize: 14,
-                                    fontWidth: "500",
-                                    color: "#FFFFFF"
-                                }}
-                            >
-                                {type.fullName}
-                            </p>
-                        </div>
-                    )
+                    return <Checkbox
+                        selected={isSelected}
+                        text={type.fullName}
+                        onClick={() => switchSelect(type)}
+                    />
                 })}
             </div>
             <div

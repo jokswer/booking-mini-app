@@ -7,3 +7,6 @@ export * from "./Avatar";
 export * from "./GameSlotLine";
 export * from "./GameSystemsSellector";
 export * from "./Modal";
+export * from "./Checkbox";
+export * from "./CloseButton";
+export * from "./AddedTimeSlote";
