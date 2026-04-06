@@ -25,11 +25,13 @@ body {
 
 .collapse-content {
   overflow: hidden;
-  transition: height 0.3s ease-in-out; /* Smooth animation for height changes */
+  transition: height 0.3s ease-in-out;
+  /* Smooth animation for height changes */
 }
 
 .collapse-content.collapsed {
-  height: 0; /* Hidden state */
+  height: 0;
+  /* Hidden state */
 }
 
 .collapse-content.expanded {
