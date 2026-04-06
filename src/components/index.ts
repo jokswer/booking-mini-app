@@ -10,3 +10,4 @@ export * from "./Modal";
 export * from "./Checkbox";
 export * from "./CloseButton";
 export * from "./AddedTimeSlote";
+export * from "./AcceptedGameCard";

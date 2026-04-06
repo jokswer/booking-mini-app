@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+import { AcceptedGameCard } from "components";
 import { useAppNavigation } from "navigation";
 
 import { type Tab, type TabValue, Tabs } from "../Tabs";
@@ -30,6 +31,7 @@ export const TimeSlotsList: React.FC = () => {
       <div className="mt-6">
         {activeTab === "all" && (
           <div className="flex flex-col gap-6">
+            <AcceptedGameCard />
             {MOCK_GAMES.map((data, index) => (
               <TimeSlotsCard
                 key={index}
