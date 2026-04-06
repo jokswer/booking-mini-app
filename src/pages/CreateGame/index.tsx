@@ -1,14 +1,22 @@
-import React from 'react'
+import React from "react";
+
 import { BackButton } from "@twa-dev/sdk/react";
 
-import { GameSystemsSellercot, Layout, Modal, AddedTimeSlote } from "components";
+import plusIcon from "assets/plus.svg";
+
+import {
+  AddedTimeSlote,
+  GameSystemsSellercot,
+  Layout,
+  Modal,
+} from "components";
 import { useAppNavigation } from "navigation";
-import plusIcon from 'assets/plus.svg';
 
 export const CreateGamePage = () => {
-
-  const [showModalTimeSlote, setShowModalTimeSlote] = React.useState<boolean>(false)
-  const [showModalGameSystems, setShowModalGameSystems] = React.useState<boolean>(false)
+  const [showModalTimeSlote, setShowModalTimeSlote] =
+    React.useState<boolean>(false);
+  const [showModalGameSystems, setShowModalGameSystems] =
+    React.useState<boolean>(false);
 
   const { goBack } = useAppNavigation();
   return (
@@ -17,17 +25,16 @@ export const CreateGamePage = () => {
       <div
         style={{
           gap: 24,
-          display: 'flex',
-          flexDirection: 'column',
-          flex: 1
+          display: "flex",
+          flexDirection: "column",
+          flex: 1,
         }}
       >
         <p
           style={{
             fontSize: 20,
-            fontWeight: '700',
-            verticalAlign: 'middle',
-
+            fontWeight: "700",
+            verticalAlign: "middle",
           }}
         >
           Создать игру
@@ -35,72 +42,64 @@ export const CreateGamePage = () => {
         <div
           style={{
             gap: 12,
-            display: 'flex',
-            flexDirection: 'column',
+            display: "flex",
+            flexDirection: "column",
           }}
         >
-          <p style={styles.title} >
-            Игровые системы
-          </p>
+          <p style={styles.title}>Игровые системы</p>
           <div>
             <button
               style={styles.button}
               onClick={() => setShowModalGameSystems(true)}
             >
               <img src={plusIcon} width={24} height={24} />
-              <p>
-                Добавить игровую систему
-              </p>
-
-            </button></div>
+              <p>Добавить игровую систему</p>
+            </button>
+          </div>
         </div>
         <div
           style={{
             gap: 12,
-            display: 'flex',
-            flexDirection: 'column',
+            display: "flex",
+            flexDirection: "column",
           }}
         >
-          <p style={styles.title} >
-            Желаемое время игры
-          </p>
+          <p style={styles.title}>Желаемое время игры</p>
           <div>
             <button
               style={styles.button}
               onClick={() => setShowModalGameSystems(true)}
             >
               <img src={plusIcon} width={24} height={24} />
-              <p>
-                Добавить дату
-              </p>
-
+              <p>Добавить дату</p>
             </button>
           </div>
         </div>
-
       </div>
       <Modal
         onClose={() => {
-          setShowModalGameSystems(false)
+          setShowModalGameSystems(false);
         }}
         isOpen={showModalGameSystems}
       >
         <GameSystemsSellercot
-          types={[{
-            typesId: "1",
-            shortName: "wh 40k",
-            fullName: "Warhammer 40k"
-          },
-          {
-            typesId: "2",
-            shortName: "KT",
-            fullName: "Kill Team"
-          },
-          {
-            typesId: "3",
-            shortName: "AoS",
-            fullName: "Age of Sigmar"
-          }]}
+          types={[
+            {
+              typesId: "1",
+              shortName: "wh 40k",
+              fullName: "Warhammer 40k",
+            },
+            {
+              typesId: "2",
+              shortName: "KT",
+              fullName: "Kill Team",
+            },
+            {
+              typesId: "3",
+              shortName: "AoS",
+              fullName: "Age of Sigmar",
+            },
+          ]}
           selected={[]}
           onClose={() => setShowModalGameSystems(false)}
           onSelect={(types) => setShowModalGameSystems(false)}
@@ -108,31 +107,33 @@ export const CreateGamePage = () => {
       </Modal>
       <Modal
         onClose={() => {
-          setShowModalTimeSlote(false)
+          setShowModalTimeSlote(false);
         }}
         isOpen={showModalTimeSlote}
       >
         <AddedTimeSlote
-          date={'10 февраля'}
-          dayWeek={'Чт'}
+          date={"10 февраля"}
+          dayWeek={"Чт"}
           timeSlotes={[
             {
               id: "0",
-              title: 'Утро'
-            }, {
+              title: "Утро",
+            },
+            {
               id: "1",
-              title: 'День'
-            }, {
+              title: "День",
+            },
+            {
               id: "2",
-              title: 'Вечер'
+              title: "Вечер",
             },
           ]}
           selected={["1", "2"]}
           onSelect={() => {
-            setShowModalTimeSlote(false)
+            setShowModalTimeSlote(false);
           }}
           onDelete={() => {
-            setShowModalTimeSlote(false)
+            setShowModalTimeSlote(false);
           }}
         />
       </Modal>
@@ -142,21 +143,21 @@ export const CreateGamePage = () => {
 
 const styles = {
   button: {
-    display: 'flex',
+    display: "flex",
     alignItems: "center",
     padding: 12,
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: "#919EAB52"
+    borderColor: "#919EAB52",
   },
   title: {
     fontSize: 14,
-    fontWeight: '600',
-    verticalAlign: 'middle',
+    fontWeight: "600",
+    verticalAlign: "middle",
   },
   blokContainer: {
     gap: 12,
-    display: 'flex',
-    flexDirection: 'column',
-  }
-}
+    display: "flex",
+    flexDirection: "column",
+  },
+};

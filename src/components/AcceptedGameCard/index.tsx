@@ -25,7 +25,9 @@ const AcceptedGameCardComponent: React.FC = () => {
         />
         <div className="flex flex-col gap-3 max-w-15.5 items-center">
           <img src={acceptGameIcon} width={24} height={24} />
-          <div className="text-xs py-0.5 px-1 rounded-sm bg-[#919EAB14]">Wh 40k</div>
+          <div className="text-xs py-0.5 px-1 rounded-sm bg-[#919EAB14]">
+            Wh 40k
+          </div>
         </div>
         <User
           src="https://placehold.co/48x48/000000/FFFFFF/svg"

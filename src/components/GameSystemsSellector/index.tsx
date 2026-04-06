@@ -1,130 +1,139 @@
-import * as React from 'react';
+import * as React from "react";
 
-import { Checkbox } from 'components';
+import { Checkbox } from "components";
 
 type IGameSystemsType = {
-    typesId: string;
-    shortName: string;
-    fullName: string;
-}
+  typesId: string;
+  shortName: string;
+  fullName: string;
+};
 
 type Props = {
-    types: IGameSystemsType[],
-    selected: string[],
-    onClose: () => void,
-    onSelect: (types: IGameSystemsType[]) => void
-}
+  types: IGameSystemsType[];
+  selected: string[];
+  onClose: () => void;
+  onSelect: (types: IGameSystemsType[]) => void;
+};
 
 export const GameSystemsSellercot: React.FC<Props> = ({
-    types,
-    selected,
-    onClose,
-    onSelect
+  types,
+  selected,
+  onClose,
+  onSelect,
 }) => {
-    const [selectedTypes, setSelectedTypes] = React.useState<{ [key: string]: boolean }>({})
+  const [selectedTypes, setSelectedTypes] = React.useState<{
+    [key: string]: boolean;
+  }>({});
 
-    React.useEffect(() => {
-        const selectTypes = types.reduce<{ [key: string]: boolean }>((acc, type) => {
-            const isSelect = !!selected.find(item => type.typesId === item);
-            acc[type.typesId] = isSelect;
-            return acc;
-        }, {});
-        setSelectedTypes(selectTypes);
-    }, [selected, types])
+  React.useEffect(() => {
+    const selectTypes = types.reduce<{ [key: string]: boolean }>(
+      (acc, type) => {
+        const isSelect = !!selected.find((item) => type.typesId === item);
+        acc[type.typesId] = isSelect;
+        return acc;
+      },
+      {},
+    );
+    setSelectedTypes(selectTypes);
+  }, [selected, types]);
 
-    const switchSelect = (type: IGameSystemsType) => {
-        const newValue = !selectedTypes[type.typesId];
-        setSelectedTypes({ ...selectedTypes, [type.typesId]: newValue })
-    }
+  const switchSelect = (type: IGameSystemsType) => {
+    const newValue = !selectedTypes[type.typesId];
+    setSelectedTypes({ ...selectedTypes, [type.typesId]: newValue });
+  };
 
-    const onSave = () => {
-        const saveTypes = Object.keys(selectedTypes).reduce<IGameSystemsType[]>((acc, key) => {
-            if (selectedTypes[key]) {
-                const _type = types.find(type => type.typesId === key)
-                _type && acc.push(_type)
-            }
-            return acc
-        }, []);
-        onSelect(saveTypes);
-    }
+  const onSave = () => {
+    const saveTypes = Object.keys(selectedTypes).reduce<IGameSystemsType[]>(
+      (acc, key) => {
+        if (selectedTypes[key]) {
+          const _type = types.find((type) => type.typesId === key);
+          _type && acc.push(_type);
+        }
+        return acc;
+      },
+      [],
+    );
+    onSelect(saveTypes);
+  };
 
-    return (
-        <div
-            style={{
-                display: 'flex',
-                flexDirection: 'column',
-                paddingLeft: 24,
-                paddingRight: 24,
-                paddingTop: 16,
-                paddingBottom: 16,
-                gap: 12,
-                borderRadius: 12,
-                backgroundColor: "#26303A"
-            }}
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        paddingLeft: 24,
+        paddingRight: 24,
+        paddingTop: 16,
+        paddingBottom: 16,
+        gap: 12,
+        borderRadius: 12,
+        backgroundColor: "#26303A",
+      }}
+    >
+      <p
+        style={{
+          fontSize: 16,
+          fontWidth: "700",
+          color: "#FFFFFF",
+        }}
+      >
+        Игровые системы
+      </p>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: 8,
+        }}
+      >
+        {types.map((type) => {
+          const isSelected = selectedTypes[type.typesId];
+          return (
+            <Checkbox
+              selected={isSelected}
+              text={type.fullName}
+              onClick={() => switchSelect(type)}
+            />
+          );
+        })}
+      </div>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "right",
+          gap: 12,
+        }}
+      >
+        <button
+          style={{
+            height: 36,
+            paddingLeft: 12,
+            paddingRight: 12,
+            fontSize: 14,
+            fontWeight: "700",
+          }}
+          onClick={onClose}
         >
-            <p
-                style={{
-                    fontSize: 16,
-                    fontWidth: '700',
-                    color: '#FFFFFF',
-                }}
-            >
-                Игровые системы
-            </p>
-            <div
-                style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: 8,
-
-                }}
-            >
-                {types.map((type) => {
-                    const isSelected = selectedTypes[type.typesId]
-                    return <Checkbox
-                        selected={isSelected}
-                        text={type.fullName}
-                        onClick={() => switchSelect(type)}
-                    />
-                })}
-            </div>
-            <div
-                style={{
-                    display: 'flex',
-                    flexDirection: 'row',
-                    alignItems: "center",
-                    justifyContent: 'right',
-                    gap: 12
-                }}
-            >
-                <button
-                    style={{
-                        height: 36,
-                        paddingLeft: 12,
-                        paddingRight: 12,
-                        fontSize: 14,
-                        fontWeight: '700'
-                    }}
-                    onClick={onClose}
-                >
-                    Закрыть
-                </button>
-                <button
-                    style={{
-                        height: 36,
-                        paddingLeft: 12,
-                        paddingRight: 12,
-                        borderRadius: 8,
-                        backgroundColor: "#FFFFFF",
-                        color: "#000000",
-                        fontSize: 14,
-                        fontWeight: '700'
-                    }}
-                    onClick={onSave}
-                >
-                    Добавить
-                </button>
-            </div>
-        </div>
-    )
-}
+          Закрыть
+        </button>
+        <button
+          style={{
+            height: 36,
+            paddingLeft: 12,
+            paddingRight: 12,
+            borderRadius: 8,
+            backgroundColor: "#FFFFFF",
+            color: "#000000",
+            fontSize: 14,
+            fontWeight: "700",
+          }}
+          onClick={onSave}
+        >
+          Добавить
+        </button>
+      </div>
+    </div>
+  );
+};
