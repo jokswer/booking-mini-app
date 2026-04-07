@@ -7,6 +7,7 @@ import plusIcon from "assets/plus.svg";
 import {
   AddedTimeSlote,
   GameSystemsSellercot,
+  Header,
   Layout,
   Modal,
 } from "components";
@@ -21,6 +22,7 @@ export const CreateGamePage = () => {
   const { goBack } = useAppNavigation();
   return (
     <Layout>
+      <Header />
       <BackButton onClick={goBack} />
       <div
         style={{

@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router";
+import { useNavigate, useLocation } from "react-router";
 
 import { CREATE_GAME, HOME, PROFILE, SLOT } from "./routes";
 
@@ -11,5 +11,10 @@ export const useAppNavigation = () => {
   const goToCreateGame = () => navigate(CREATE_GAME);
   const goToSlot = () => navigate(SLOT);
 
-  return { goBack, goToProfile, goToHome, goToCreateGame, goToSlot };
+  const pathLevel = () => {
+    const { pathname } = useLocation();
+    return pathname.split("/").filter(Boolean).length;
+  };
+
+  return { goBack, goToProfile, goToHome, goToCreateGame, goToSlot, pathLevel };
 };
