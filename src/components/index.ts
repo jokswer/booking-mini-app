@@ -12,3 +12,4 @@ export * from "./CloseButton";
 export * from "./AddedTimeSlote";
 export * from "./AcceptedGameCard";
 export * from "./Header";
+export * from "./AddSystem";

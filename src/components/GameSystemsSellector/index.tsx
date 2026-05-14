@@ -1,18 +1,14 @@
 import * as React from "react";
 
 import { Checkbox } from "components";
-
-type IGameSystemsType = {
-  typesId: string;
-  shortName: string;
-  fullName: string;
-};
+import type { IGameSystemsType } from "types";
 
 type Props = {
   types: IGameSystemsType[];
   selected: string[];
   onClose: () => void;
   onSelect: (types: IGameSystemsType[]) => void;
+  canDelete?: boolean;
 };
 
 export const GameSystemsSellercot: React.FC<Props> = ({
@@ -20,6 +16,7 @@ export const GameSystemsSellercot: React.FC<Props> = ({
   selected,
   onClose,
   onSelect,
+  canDelete = true,
 }) => {
   const [selectedTypes, setSelectedTypes] = React.useState<{
     [key: string]: boolean;
@@ -39,6 +36,7 @@ export const GameSystemsSellercot: React.FC<Props> = ({
 
   const switchSelect = (type: IGameSystemsType) => {
     const newValue = !selectedTypes[type.typesId];
+    if (!canDelete && !!selected.find(id => id === type.typesId) && !newValue) return;
     setSelectedTypes({ ...selectedTypes, [type.typesId]: newValue });
   };
 
@@ -88,11 +86,13 @@ export const GameSystemsSellercot: React.FC<Props> = ({
       >
         {types.map((type) => {
           const isSelected = selectedTypes[type.typesId];
+          const needDisable = !canDelete && !!selected.find(id => id === type.typesId) && isSelected
           return (
             <Checkbox
               selected={isSelected}
               text={type.fullName}
               onClick={() => switchSelect(type)}
+              disabled={needDisable}
             />
           );
         })}

@@ -7,9 +7,10 @@ type Props = {
   selected: boolean;
   text: string;
   onClick: () => void;
+  disabled?: boolean;
 };
 
-export const Checkbox: React.FC<Props> = ({ selected, text, onClick }) => {
+export const Checkbox: React.FC<Props> = ({ selected, text, onClick, disabled = false }) => {
   return (
     <div
       key={text}
@@ -22,7 +23,9 @@ export const Checkbox: React.FC<Props> = ({ selected, text, onClick }) => {
       <button
         style={{
           padding: 8,
+          opacity: disabled ? 0.5 : 1,
         }}
+        disabled={disabled}
         onClick={onClick}
       >
         <img src={selected ? checkboxActive : checkboxInactive} />
@@ -32,6 +35,7 @@ export const Checkbox: React.FC<Props> = ({ selected, text, onClick }) => {
           fontSize: 14,
           fontWidth: "500",
           color: "#FFFFFF",
+          opacity: disabled ? 0.5 : 1,
         }}
       >
         {text}

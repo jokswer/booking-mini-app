@@ -71,7 +71,7 @@ const SelectComponent: React.FC<Props> = ({ className, options, ...rest }) => {
         className,
       )}
     >
-      <BaseSelect
+      <BaseSelect<Option>
         isSearchable={false}
         options={options}
         classNamePrefix="custom-select"
