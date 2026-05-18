@@ -2,18 +2,18 @@ import * as React from "react";
 
 import { Checkbox, CloseButton } from "components";
 
-type ITimeSlote = {
-  title: string;
+export type ITimeSloteItem = {
   id: string;
+  title: string;
 };
 
 type Props = {
   date: string;
   dayWeek: string;
-  timeSlotes: ITimeSlote[];
+  timeSlotes: ITimeSloteItem[];
   selected: string[];
   onDelete: (date: string) => void;
-  onSelect: (types: ITimeSlote) => void;
+  onSelect: (timeSlote: ITimeSloteItem) => void;
 };
 
 export const AddedTimeSlote: React.FC<Props> = ({

@@ -6,12 +6,14 @@ import {
   AddedTimeSlote,
   AddSystem,
   Button,
+  Calendar,
   CloseButton,
   GameSystemsSellercot,
   Header,
   Layout,
   Modal,
   Select,
+  type ITimeSloteItem,
 } from "components";
 import type { IGameSystemsType } from "types";
 
@@ -49,13 +51,51 @@ const gameLevelsMOCK = [
 
 ]
 
+const timeSlotsMOCK: ITimeSloteItem[] = [
+  {
+    id: "0",
+    title: "Утро",
+  },
+  {
+    id: "1",
+    title: "День",
+  },
+  {
+    id: "2",
+    title: "Вечер",
+  },
+]
+
 type IGameSystem = {
   typesId: string;
   lvlId: string;
   description: string;
 }
 
+type ITimeSlote = {
+  date: string;
+  timeSlots: string[];
+};
 
+function parseISOLocalDate(isoDate: string): Date {
+  const [y, m, d] = isoDate.split("-").map(Number);
+  return new Date(y, m - 1, d);
+}
+
+function formatDateLong(isoDate: string): string {
+  return new Intl.DateTimeFormat("ru-RU", {
+    day: "numeric",
+    month: "long",
+  }).format(parseISOLocalDate(isoDate));
+}
+
+function formatWeekdayShort(isoDate: string): string {
+  const label = new Intl.DateTimeFormat("ru-RU", { weekday: "short" }).format(
+    parseISOLocalDate(isoDate),
+  );
+  const trimmed = label.replace(/\.$/, "");
+  return trimmed.charAt(0).toUpperCase() + trimmed.slice(1);
+}
 
 export const CreateGamePage = () => {
   const [showModalTimeSlote, setShowModalTimeSlote] =
@@ -66,6 +106,8 @@ export const CreateGamePage = () => {
   const [gameSystems, setGameSystems] = React.useState<{
     [key: string]: IGameSystem
   }>({})
+
+  const [timeSlotes, setTimeSlotes] = React.useState<ITimeSlote[]>([]);
 
   const hendlerSelectSystems = (types: IGameSystemsType[]) => {
     setShowModalGameSystems(false)
@@ -155,6 +197,34 @@ export const CreateGamePage = () => {
           }}
         >
           <p style={styles.title}>Желаемое время игры</p>
+          {timeSlotes.map(timeSlote => (
+            <AddedTimeSlote
+              key={timeSlote.date}
+              date={formatDateLong(timeSlote.date)}
+              dayWeek={formatWeekdayShort(timeSlote.date)}
+              timeSlotes={timeSlotsMOCK}
+              selected={timeSlote.timeSlots}
+              onSelect={(slot) => {
+                setTimeSlotes(
+                  timeSlotes.map((entry) => {
+                    if (entry.date !== timeSlote.date) return entry;
+                    const isSelected = entry.timeSlots.includes(slot.id);
+                    return {
+                      ...entry,
+                      timeSlots: isSelected
+                        ? entry.timeSlots.filter((id) => id !== slot.id)
+                        : [...entry.timeSlots, slot.id],
+                    };
+                  }),
+                );
+              }}
+              onDelete={() => {
+                setTimeSlotes(
+                  timeSlotes.filter((entry) => entry.date !== timeSlote.date),
+                );
+              }}
+            />
+          ))}
           <div>
             <button
               style={styles.button}
@@ -197,30 +267,19 @@ export const CreateGamePage = () => {
         }}
         isOpen={showModalTimeSlote}
       >
-        <AddedTimeSlote
-          date={"10 февраля"}
-          dayWeek={"Чт"}
-          timeSlotes={[
-            {
-              id: "0",
-              title: "Утро",
-            },
-            {
-              id: "1",
-              title: "День",
-            },
-            {
-              id: "2",
-              title: "Вечер",
-            },
-          ]}
-          selected={["1", "2"]}
-          onSelect={() => {
+        <Calendar
+          onClose={() => {
             setShowModalTimeSlote(false);
           }}
-          onDelete={() => {
+          onAdd={(dates) => {
+            setTimeSlotes(dates.map(date => ({
+              date: date,
+              timeSlots: timeSlotes.find(timeSlote => timeSlote.date === date)?.timeSlots ?? [],
+            })));
             setShowModalTimeSlote(false);
           }}
+          value={timeSlotes.map(timeSlote => timeSlote.date)}
+          defaultValue={[]}
         />
       </Modal>
     </Layout>
